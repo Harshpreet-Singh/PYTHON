@@ -55,3 +55,5 @@ else:
         print("You Loose!\nBetter Luck Next Time!")
     else:
         print("Something Went Wrong!")
+
+print("THANKS FOR PLAYING!😊")
