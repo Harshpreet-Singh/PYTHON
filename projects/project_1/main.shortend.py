@@ -44,23 +44,3 @@ else:
 # COMPUTER-YOU ki jo value hai use check kiya gya
 # it was -1 or 2 if player loose so we added condition on (computer-you)'s value          
 print("Thanks for playing!")
-
-    # if(computer == -1 and you == 1):
-    #     print("You win!\nWell Played!")
-
-    # elif(computer == -1 and you == 0):
-    #     print("You Loose!\nBetter Luck Next Time!")
-
-    # elif(computer == 1 and you == -1):
-    #     print("You Loose!\nBetter Luck Next Time!")
-
-    # elif(computer == 0 and you == -1):
-    #     print("You win!\nWell Played!")
-
-    # elif(computer == 1 and you == 0):
-    #     print("You win!\nWell Played!")
-
-    # elif(computer == 0 and you == 1):
-    #     print("You Loose!\nBetter Luck Next Time!")
-    # else:
-    #     print("Something Went Wrong!")
