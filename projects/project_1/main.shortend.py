@@ -40,6 +40,9 @@ else:
         print("YOU LOOSE!\nBETTER LUCK NEXT TIME!")
     else:
         print("YOU WIN!\nWELL PLAYED!")
+# THIS LOGIC IS WRITTEN ON LOGIN MENTIONED BELOW:
+# COMPUTER-YOU ki jo value hai use check kiya gya
+# it was -1 or 2 if player loose so we added condition on (computer-you)'s value          
 print("Thanks for playing!")
 
     # if(computer == -1 and you == 1):
