@@ -40,7 +40,7 @@ else:
         print("YOU LOOSE!\nBETTER LUCK NEXT TIME!")
     else:
         print("YOU WIN!\nWELL PLAYED!")
-
+print("Thanks for playing!")
 
     # if(computer == -1 and you == 1):
     #     print("You win!\nWell Played!")
