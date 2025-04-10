@@ -1,0 +1,13 @@
+s = set()
+n = input("Enter Number: ")
+s.add(int(n))
+n = input("Enter Number: ")
+s.add(int(n))
+n = input("Enter Number: ")
+s.add(int(n))
+n = input("Enter Number: ")
+s.add(int(n))
+n = input("Enter Number: ")
+s.add(int(n))
+
+print(f" The set is --> {s}")
