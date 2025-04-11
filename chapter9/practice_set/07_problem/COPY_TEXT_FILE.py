@@ -1,3 +1,4 @@
+from datetime import datetime
 with open("chapter9\\practice_set\\07_problem\\copy.txt") as f:
     copy = f.read()
 
@@ -12,6 +13,11 @@ with open("chapter9\\practice_set\\07_problem\\copy_done.txt") as f2:
 
 
 if(original_content == copied_content):
-    print("Copied Properly!")
+    now = datetime.now()
+    timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
+    # Write timestamp to a log file
+    with open("chapter9\\practice_set\\07_problem\\copy_log.txt", "a") as log_file:
+        log_file.write(f"Copied successfully on {datetime}\n")
+        print(f"Copied successfully on {timestamp}\n")
 else:
     print("Failed to copy properly!")
