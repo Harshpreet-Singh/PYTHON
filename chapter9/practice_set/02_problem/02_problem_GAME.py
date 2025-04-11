@@ -2,7 +2,7 @@ import random
 def game():
     print("\nYou are playing the Game...\n")
     score = random.randint(1, 61)
-    with open("chapter9\practice_set\highScore.txt") as f:
+    with open("chapter9\\practice_set\\02_problem\\highScore.txt") as f:
         highScore = f.read()
         if(highScore !=""):
             highScore = int(highScore)
@@ -10,7 +10,7 @@ def game():
             highScore = 0
     print(f"Your score: {score}")
     if(score>highScore):
-        with open("chapter9\practice_set\highScore.txt", "w") as f:
+        with open("chapter9\\practice_set\\02_problem\\highScore.txt", "w") as f:
             f.write(str(score))
         # then write the new score as high score
     else:
