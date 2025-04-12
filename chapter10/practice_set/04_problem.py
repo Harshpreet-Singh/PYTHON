@@ -5,7 +5,7 @@ indian_cities = [
     "Mumbai", "Delhi", "Bangalore", "Kolkata", "Chennai", "Hyderabad", 
     "Ahmedabad", "Pune", "Jaipur", "Surat", "Lucknow", "Kanpur", 
     "Nagpur", "Indore", "Patna", "Bhopal", "Vadodara", "Coimbatore", 
-    "Kochi", "Chandigarh", "Visakhapatnam"
+    "Kochi", "Chandigarh", "Visakhapatnam", "Mohali", "Rajpura"
 ]
 class Train:
     def __init__(self, trainNo):
