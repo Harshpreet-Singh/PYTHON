@@ -21,7 +21,7 @@ class Programmer(Employee, Coder): #/\/\/\/\/\/\/\__CHILD CLASS__/\/\/\/\/\/\/\
     def showLanguage(self):
         print(f"He work with {self.company} & He is good with {self.language} language")
 
-#    CALLING CLASSES
+#   CREATING OBJECT
 a = Employee()
 b = Programmer()
 
