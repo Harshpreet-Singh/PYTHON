@@ -14,11 +14,9 @@ import pygame
 import pyautogui
 pyautogui.FAILSAFE = False # now click will not stop
 from gtts import gTTS
-
 # import cv2 # to capture camera
 import pygame.camera
 from pygame.locals import *
-
 # setting up notification push
 # from win10toast import ToastNotifier
 # win10toast is only for win10 so using plyer is better option
@@ -26,16 +24,18 @@ from plyer import notification
 from win10toast_click import ToastNotifier
 import threading
 import winotify  # alternate option for notifications
-
 # for settting up audio of os 
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-
 # for opening applications/ softwares installed in system
 import pygetwindow as gw
 import win32gui
 import win32con
+import pyperclip # used to copy text to clip board
+import subprocess # using for screen saver
+
+
     
 
 
@@ -65,7 +65,7 @@ engine.setProperty('voice', voices[1].id)   #changing index, changes voices. 1 f
 
 recogniser = sr.Recognizer()
 engine = pyttsx3.init()
-newsapi = "06e53c7437cf4f2a9023e5db6e032f42"
+newsapi = "get it "
 
 def speak(text):
     engine.say(text)
@@ -95,7 +95,7 @@ def speak(text):
 
 #  _____________________PAID HAI OPEN AI_____________________
 # def aiProcess(command):
-#     client = openai.OpenAI(api_key="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")
+#     client = openai.OpenAI(api_key="get it ")
 #     completion = client.chat.completions.create(
 #     model="gpt-3.5-turbo",
 #     messages=[
@@ -106,8 +106,14 @@ def speak(text):
 #     return completion.choices[0].message.content
 
 
+
+# screensaver
+def activate_screensaver():
+    subprocess.run(["C:\\Windows\\System32\\scrnsave.scr", "/s"])
+
+
 # OPENING SYSTEM APPS
-# MAP YOUR APPLICATIONS HERE
+# >> MAP YOUR APPLICATIONS HERE
 app_paths = {
                     "notepad": "notepad.exe",
                     "calculator": "calc.exe",
@@ -143,23 +149,6 @@ def focus_or_open_app(app_name):
             speak("Application not found in my database.")
 
 #  capture camera 
-# def capture_image():
-#     cam = cv2.VideoCapture(0)  # 0 is the default webcam
-#     if not cam.isOpened():
-#         print("Error: Could not access the webcam.")
-#         return
-#     ret, frame = cam.read()
-#     if ret:
-#         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-#         filename = f"captured_image_{timestamp}.jpg"
-#         cv2.imwrite(filename, frame)
-#         print(f"Image saved as {filename}")
-#     else:
-#         print("Failed to capture image.")
-#     cam.release()
-#     cv2.destroyAllWindows()
-
-# CAPTURE IMAGE USING CAMERA AND PYGAME.CAMERA
 def capture_image():
     # Initialize pygame and its camera module
     pygame.init()
@@ -200,6 +189,9 @@ def processCommand(c):
         speak("Sehaj")
     elif "open terminal" in c.lower():
         pyautogui.hotkey('ctrl', '`')
+    elif "open insta" in c.lower() or "open instagram" in c.lower():
+        speak("opening instagram")
+        webbrowser.open("htttps://instagram.com/harshpreet170607")
 # OPENING SYSTEM APPS CONTINUED HERE
     elif "open app" in c.lower() or "open application" in c.lower() or "open" in c.lower():
             speak("Which application should I open or switch to?")
@@ -211,48 +203,46 @@ def processCommand(c):
             except Exception as e:
                 speak("Sorry, I couldn't understand the application name.")
                 print(e)
+
 # SHOWING DESKTOP
     elif "show desktop" in c.lower() or "open desktop screen" in c.lower():
         speak("Showing desktop")
         pyautogui.hotkey('win', 'd') # this controlls keyboard bro
+
 # REFRESHING PAGE OR RELOADING PAGE
     elif "refresh" in c.lower() or "reload" in c.lower():
         speak("Refreshing..")
         pyautogui.hotkey('f5') # this controlls keyboard bro
-# CAPTURE CAMERA IMAGE
 
+# CAPTURE CAMERA IMAGE
     elif "take picture" in c.lower() or "capture image" in c.lower():
         speak("Capturing image now.")
         capture_image()
         speak("Image captured and saved.")
-    # elif "capture image" in c.lower() or "take picture" in c.lower():
-    #     speak("Capturing image now.")
-    #     capture_image()
-    #     speak("Image captured and saved.")
+
+# Applying screensaver
+    elif "screensaver" in command.lower():
+        speak("Turning on the screen saver.")
+        activate_screensaver()
+
 # (_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_) CURSOR CLICK (_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)
     elif "use mouse" in c.lower():
         speak("Where should I click? You can say center, top left, top right, or custom.")
         r = sr.Recognizer()
         with sr.Microphone() as source:
             audio = r.listen(source)
-
         try:
             position_command = r.recognize_google(audio).lower()
             print(f"You said: {position_command}")
-
             x, y = None, None  # Initialize to avoid "unbound variable" error
-
-            if "center" in position_command:
+            if "centre" in position_command or "center" in position_command:
                 screen_width, screen_height = pyautogui.size()
                 x, y = screen_width // 2, screen_height // 2
-
             elif "top left" in position_command:
                 x, y = 0, 0
-
             elif "top right" in position_command:
                 screen_width, screen_height = pyautogui.size()
                 x, y = screen_width - 1, 0
-
             elif "custom" in position_command:
                 speak("Say X coordinate")
                 with sr.Microphone() as source:
@@ -262,7 +252,6 @@ def processCommand(c):
                 except:
                     speak("Couldn't understand the X coordinate.")
                     return
-
                 speak("Say Y coordinate")
                 with sr.Microphone() as source:
                     audio = r.listen(source)
@@ -271,7 +260,6 @@ def processCommand(c):
                 except:
                     speak("Couldn't understand the Y coordinate.")
                     return
-
             if x is not None and y is not None:
                 speak(f"Clicking at {x}, {y}")
                 pyautogui.moveTo(x, y)
@@ -279,47 +267,17 @@ def processCommand(c):
                 pyautogui.mouseUp()
             else:
                 speak("Invalid position specified.")
-
         except Exception as e:
             print(f"Error: {e}")
             speak("Sorry, I couldn't understand where to click.")
-
-
-
-
-    # elif "use mouse" in c.lower():
-    #     speak("Where should I click? You can say center, top left, top right, or custom.")
-    #     r = sr.Recognizer()
-    #     with sr.Microphone() as source:
-    #         audio = r.listen(source)
-    #     try:
-    #         position_command = r.recognize_google(audio).lower()
-    #         print(f"You said: {position_command}")
-    #         if "center" in position_command:
-    #             pyautogui.click(960, 540)
-    #         elif "top left" in position_command:
-    #             pyautogui.click(0, 0)
-    #         elif "top right" in position_command:
-    #             screen_width, screen_height = pyautogui.size()
-    #             x = screen_width - 1  # max width
-    #             y = 0                 # top
-    #             pyautogui.click(x, y)
-    #         if "custom" in position_command:
-    #             speak("Say X coordinate")
-    #             with sr.Microphone() as source:
-    #                 audio = r.listen(source)
-    #             x = int(r.recognize_google(audio).lower())
-    #             speak("Say Y coordinate")
-    #             with sr.Microphone() as source:
-    #                 audio = r.listen(source)
-    #             y = int(r.recognize_google(audio).lower())
-    #         # else:
-    #         #     x, y = 100, 200  # fallback
-    #         speak(f"Clicking at {x}, {y}")
-    #         pyautogui.click(x=x, y=y)
-    #     except Exception as e:
-    #         print(f"Error: {e}")
-    #         speak("Sorry, I couldn't understand where to click.")
+# minimize
+    elif "minimize" in c.lower() or "small" in c.lower() or "window down" in c.lower() or "down" in c.lower:
+        try:
+            speak("Minimizing Now..")
+            pyautogui.click(1260, 14)
+        except Exception as e:
+            speak("Can't click")
+    
 
 # NOTIFACTIONS BELLOW
 
@@ -339,6 +297,17 @@ def processCommand(c):
 # (_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_) FOLLOWING IS PLYER (_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)
 
 # CUSTOM NOTIFICTION
+    elif "send me" in c.lower():
+        speak("trying..")
+        def show_notification():
+                    notification.notify(
+                        title='JARVIS',
+                        message='NO HAPPINESS FOUND 🙁',
+                        app_name='JARVIS Assistant',
+                        app_icon='jarvis.ico',
+                        timeout=8  # Notification duration in seconds
+                    )
+        show_notification()
 # SPEAK TIME
     elif "tell time" in c.lower() or "tell date" in c.lower() or "what is time" in c.lower() or "what is date" in c.lower():
         try:
@@ -381,9 +350,7 @@ def processCommand(c):
             # Run in a thread to avoid blocking
             notif_thread = threading.Thread(target=show_notification)
             notif_thread.start()
-            
             speak("Notification sent. Click it to activate.")
-
         except ImportError:
             speak("Notification feature not available")
         except Exception as e:
@@ -442,7 +409,7 @@ def processCommand(c):
     #     speak("failed to mute")
           
     # Take screenshot
-    elif "take screenshot" in c.lower():
+    elif "take screenshot" in c.lower() or "capture screen" in c.lower() or "screenshot" in c.lower():
         now = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         filename = f"screenshots\\screenshot_{now}.jpg"
         screenshot = pyautogui.screenshot()

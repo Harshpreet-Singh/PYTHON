@@ -1,6 +1,0 @@
->>> OPEN APP    >>> THEN SPEAK APP NAME     >>> LIST SPECIFIED ALREADY  --> OPENS {APP}
->>> open google,open youtube,open github --> OPENS RESPECTIVELY
->>> show desktop --> SHOWS desktop
->>> refresh --> REFRESHES OR RELOADS SCREEN
->>> use mouse >>> CUSTOM >>> X_CO-ORDINATE >>> Y_CO-ORDINATE --> THIS WILL MOVE THE MOUSE TO COMMAND PX AND CLICK THERE
->>> 
