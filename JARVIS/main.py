@@ -65,7 +65,7 @@ engine.setProperty('voice', voices[1].id)   #changing index, changes voices. 1 f
 
 recogniser = sr.Recognizer()
 engine = pyttsx3.init()
-newsapi = "06e53c7437cf4f2a9023e5db6e032f42"
+newsapi = "get it"
 
 def speak(text):
     engine.say(text)
