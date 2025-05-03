@@ -58,7 +58,7 @@ engine.setProperty('voice', voices[1].id)   #changing index, changes voices. 1 f
 
 recogniser = sr.Recognizer()
 engine = pyttsx3.init()
-newsapi = "your_key_here"
+newsapi = "06e53c7437cf4f2a9023e5db6e032f42"
 
 def speak(text):
     engine.say(text)
@@ -88,7 +88,7 @@ def speak(text):
 
 #  _____________________PAID HAI OPEN AI_____________________
 # def aiProcess(command):
-#     client = openai.OpenAI(api_key="your_key_here")
+# client = openai.OpenAI(api_key="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")
 #     completion = client.chat.completions.create(
 #     model="gpt-3.5-turbo",
 #     messages=[
