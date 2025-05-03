@@ -1,0 +1,4 @@
+{'Name of Sutudent: ': 'harsh', 'Marks of Student: ': 78, 'Phone Number: ': '7894561234'}
+{'Name of Sutudent: ': 'arsh', 'Marks of Student: ': 89, 'Phone Number: ': '4567891320'}
+{'Name of Sutudent: ': 'rahul', 'Marks of Student: ': 98, 'Phone Number: ': '4587963210'}
+{'Name of Sutudent: ': 'raj', 'Marks of Student: ': 89, 'Phone Number: ': '4568932710'}

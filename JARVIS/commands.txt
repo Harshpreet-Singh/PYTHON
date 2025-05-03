@@ -1,0 +1,20 @@
+>>> speak 'jarvis' then speak these commands
+    >>> OPEN APP    >>> THEN SPEAK APP NAME     >>> LIST SPECIFIED ALREADY  --> OPENS {APP}
+    >>> (open google),(open youtube),(open github),(open instagram) --> OPENS RESPECTIVELY
+    >>> (show desktop) --> SHOWS desktop
+    >>> (refresh) --> REFRESHES OR RELOADS SCREEN
+    >>> (minimize) --> THIS CLICKS AT MINIIMIZE ICON
+    >>> (use mouse) >>> CENTRE,TOP LEFT, TOP RIGHT CUSTOM >>> X_CO-ORDINATE >>> Y_CO-ORDINATE --> THIS WILL MOVE THE MOUSE TO COMMAND PX AND CLICK THERE
+    >>> (take screenshot) --> THIS WILL TAKE SCREENSHOT OF SCREEN
+    >>> (screensaver) --> THIS WILL APPLY SCREENSAVER TO SCREEN
+    >>> (send me) --> SIMPLE NOTIFICATION
+    >>> (tell time) or (tell date) or (what is time) or (what is date) --> speaks time & date and send notification with time and date
+    >>> notify --> this sends clickable NOTIFICATION
+    >>> play >>> then name saved in musicLibrary --> this plays music from youtube
+    >>> newws --> tells you top 5 headlines
+    >>> set volume to %--> speak % and it will set volume to that %
+    >>> mute --> mutes your sound
+>>> directly speak exit or quit --> this stops jarvis
+
+open ai = "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"
+news = "06e53c7437cf4f2a9023e5db6e032f42"

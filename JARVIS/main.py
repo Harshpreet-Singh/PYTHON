@@ -35,10 +35,6 @@ import win32con
 import pyperclip # used to copy text to clip board
 import subprocess # using for screen saver
 
-
-    
-
-
 # Initialize Pygame mixer (MUST be done first)
 pygame.mixer.init()
 
@@ -49,8 +45,8 @@ def set_system_volume(level):
     volume = cast(interface, POINTER(IAudioEndpointVolume))
     volume.SetMasterVolumeLevelScalar(level/100, None)
 
-
 # MAKING CHANGES IN PYTTSX3
+engine = pyttsx3.init() 
 engine = pyttsx3.init() 
 rate = engine.getProperty('rate')   # getting details of current speaking rate
 # print (rate)                        #printing current voice rate
@@ -60,12 +56,9 @@ voices = engine.getProperty('voices')       #getting details of current voice
 # engine.setProperty('voice', voices[0].id)  #changing index, changes voices. o for male
 engine.setProperty('voice', voices[1].id)   #changing index, changes voices. 1 for female
 
-
-
-
 recogniser = sr.Recognizer()
 engine = pyttsx3.init()
-newsapi = "get it"
+newsapi = "your_key_here"
 
 def speak(text):
     engine.say(text)
@@ -95,7 +88,7 @@ def speak(text):
 
 #  _____________________PAID HAI OPEN AI_____________________
 # def aiProcess(command):
-#     client = openai.OpenAI(api_key="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")
+#     client = openai.OpenAI(api_key="your_key_here")
 #     completion = client.chat.completions.create(
 #     model="gpt-3.5-turbo",
 #     messages=[
@@ -105,12 +98,9 @@ def speak(text):
 #     )
 #     return completion.choices[0].message.content
 
-
-
 # screensaver
 def activate_screensaver():
     subprocess.run(["C:\\Windows\\System32\\scrnsave.scr", "/s"])
-
 
 # OPENING SYSTEM APPS
 # >> MAP YOUR APPLICATIONS HERE
@@ -172,7 +162,6 @@ def capture_image():
     print(f"Image saved as {file_name}")
     cam.stop()
 
-
 def processCommand(c):
     if "open google" in c.lower():
         webbrowser.open("https://google.com")
@@ -186,7 +175,7 @@ def processCommand(c):
     elif "thank you" in c.lower():
         speak("Your Welcome Malik")
     elif "speak" in c.lower():
-        speak("Sehaj")
+        speak("Gal sun lallaria ve Ah lok mere te hasde Paise jyada dedugi Matching krdega ta dsde Sunla ve dito same chahidi Ah le photo ve Ferrari laal di")
     elif "open terminal" in c.lower():
         pyautogui.hotkey('ctrl', '`')
     elif "open insta" in c.lower() or "open instagram" in c.lower():
@@ -221,7 +210,7 @@ def processCommand(c):
         speak("Image captured and saved.")
 
 # Applying screensaver
-    elif "screensaver" in command.lower():
+    elif "screensaver" in c.lower():
         speak("Turning on the screen saver.")
         activate_screensaver()
 
@@ -271,14 +260,13 @@ def processCommand(c):
             print(f"Error: {e}")
             speak("Sorry, I couldn't understand where to click.")
 # minimize
-    elif "minimize" in c.lower() or "small" in c.lower() or "window down" in c.lower() or "down" in c.lower:
-        try:
-            speak("Minimizing Now..")
-            pyautogui.click(1260, 14)
-        except Exception as e:
-            speak("Can't click")
+    # elif "minimize" in c.lower() or "small" in c.lower() or "window down" in c.lower() or "down" in c.lower():
+    #     try:
+    #         speak("Minimizing Now..")
+    #         pyautogui.click(1260, 14)
+    #     except Exception as e:
+    #         speak("Can't click")
     
-
 # NOTIFACTIONS BELLOW
 
 # (_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_) FOLLOWING IS WIN10TOAST (_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)(_)
@@ -309,15 +297,16 @@ def processCommand(c):
                     )
         show_notification()
 # SPEAK TIME
-    elif "tell time" in c.lower() or "tell date" in c.lower() or "what is time" in c.lower() or "what is date" in c.lower():
-        try:
+    elif "tell time" in c.lower():
+    # elif "tell time" in command.lower() or "tell date" in c.lower() or "what is time" in c.lower() or "what is date" in c.lower():
+        # try:
             now = datetime.datetime.now()
             # Time in 12-hour format with AM/PM
             current_time = now.strftime("%I:%M %p")  # e.g., "02:30 PM"
             # Date in friendly format
             current_date = now.strftime("%A, %B %d, %Y")
             # Speak both
-            speak(f"The time is {current_time} on {current_date}")
+            print(f"The time is {current_time} on {current_date}")
             # Show notification
             notification.notify(
                 title='JARVIS - Time and Date',
@@ -326,9 +315,9 @@ def processCommand(c):
                 app_icon='jarvis.ico',  # Optional icon
                 timeout=10
             )
-        except Exception as e:
-            speak("Sorry, I couldn't check the time and date")
-            print(f"Time/date error: {e}")
+        # except Exception as e:
+        #     print("Sorry, I couldn't check the time and date")
+        #     print(f"Time/date error: {e}")
 
 # clickable notification
     elif "notify" in c.lower():
@@ -368,12 +357,12 @@ def processCommand(c):
             # )
 
 
-    # MUSIC BELOW   
+# MUSIC BELOW   
     elif c.lower().startswith("play"):
         song = c.lower().split(" ")[1]
         link = musicLibrary.music[song]
         webbrowser.open(link)
-    # FETCH NEWS
+# FETCH NEWS
     elif "news" in c.lower():
         speak("I will tell you the news.")
         r = requests.get(f"https://newsapi.org/v2/top-headlines?country=us&apiKey={newsapi}")
